@@ -1,38 +1,59 @@
 body {
-	background-color: grey;
+	background-color: #555555;
+}
+
+div {
+	color: white;
 }
 
 #grid-container {
 	display: grid;
-	grid-template-columns: auto auto auto;
+	grid-template-columns: auto auto 20%;
+	grid-template-rows: 20% auto auto;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: 10px;
 }
 
 #skills {
+	grid-column: 1;
+	grid-row: 1;
 	border: 2px solid white;
 }
 
 #modules {
+	grid-column: 2;
+	grid-row: 1;
 	border: 2px solid white;
 }
 
 #main {
-	grid-column-start: 1;
-	grid-column-end: 2;
-	grid-row-start: 2;
-	grid-row-end: 3; 
+	grid-column: 1 / span 2;
+	grid-row: 2 / span 2;
 	border: 2px solid white;
 }
 
 #resource_sum {
-	grid-row-start: 1;
-	grid-row-end: 1;
+	grid-column: 3;
+	grid-row: 1;
 	border: 2px solid white;
 }
 
 #labor_sum {
+	grid-column: 3;
+	grid-row: 2;
 	border: 2px solid white;
 }
 
 #machine_sum {
+	grid-column: 3;
+	grid-row: 3;
 	border: 2px solid white;
+}
+
+#modules-table tr td input {
+	width: 20px;
 }

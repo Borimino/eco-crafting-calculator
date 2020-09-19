@@ -5,8 +5,121 @@
 	</head>
 	<body>
 		<div id="grid-container">
-			<div id="skills">Your skills: </div>
-			<div id="modules">Your modules: </div>
+			<div id="skills">
+				Your skills: 
+				<table id="skills-container">
+					<tr>
+						<th>
+							<select name="prof1">
+								<option value="-">-</option>
+								<option value="carpenter">Carpenter</option>
+								<option value="miner">Miner</option>
+							</select>
+						</th>
+						<th>
+							<select name="prof2">
+								<option value="-">-</option>
+								<option value="carpenter">Carpenter</option>
+								<option value="miner">Miner</option>
+							</select>
+						</th>
+						<th>
+							<select name="prof3">
+								<option value="-">-</option>
+								<option value="carpenter">Carpenter</option>
+								<option value="miner">Miner</option>
+							</select>
+						</th>
+					</tr>
+					<tr>
+						<td>
+							<select name="skill1-1">
+								<option value="-">-</option>
+								<option value="logging">Logging</option>
+								<option value="carpentry">Carpentry</option>
+							</select>
+						</td>
+						<td>
+							<select name="skill2-1">
+								<option value="-">-</option>
+								<option value="logging">Logging</option>
+								<option value="carpentry">Carpentry</option>
+							</select>
+						</td>
+						<td>
+							<select name="skill3-1">
+								<option value="-">-</option>
+								<option value="logging">Logging</option>
+								<option value="carpentry">Carpentry</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<select name="skill1-2">
+								<option value="-">-</option>
+								<option value="logging">Logging</option>
+								<option value="carpentry">Carpentry</option>
+							</select>
+						</td>
+						<td>
+							<select name="skill2-2">
+								<option value="-">-</option>
+								<option value="logging">Logging</option>
+								<option value="carpentry">Carpentry</option>
+							</select>
+						</td>
+						<td>
+							<select name="skill3-2">
+								<option value="-">-</option>
+								<option value="logging">Logging</option>
+								<option value="carpentry">Carpentry</option>
+							</select>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div id="modules">
+				Your modules: 
+				<table id="modules-table">
+					<tr>
+						<th></th>
+						<th>I</th>
+						<th>II</th>
+						<th>III</th>
+					</tr>
+					<tr>
+						<td>Basic modules: </td>
+						<td><input type="number" id="basic1"/></td>
+						<td><input type="number" id="basic2"/></td>
+						<td><input type="number" id="basic3"/></td>
+					</tr>
+					<tr>
+						<td>Advanced modules: </td>
+						<td><input type="number" id="advanced1"/></td>
+						<td><input type="number" id="advanced2"/></td>
+						<td><input type="number" id="advanced3"/></td>
+					</tr>
+					<tr>
+						<td>Modern modules: </td>
+						<td><input type="number" id="modern1"/></td>
+						<td><input type="number" id="modern2"/></td>
+						<td><input type="number" id="modern3"/></td>
+					</tr>
+					<tr>
+						<td>
+							<select name="module-spec1">
+								<option value="-">-</option>
+								<option value="logging">Logging</option>
+								<option value="carpentry">Carpentry</option>
+							</select>
+						</td>
+						<td><input type="number" id="module-spec1-1"/></td>
+						<td><input type="number" id="module-spec1-2"/></td>
+						<td><input type="number" id="module-spec1-3"/></td>
+					</tr>
+				</table>
+			</div>
 			<div id="main">Main screen: </div>
 			<div id="resource_sum">Total resources: </div>
 			<div id="labor_sum">Total labor: </div>
