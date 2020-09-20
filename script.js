@@ -43,28 +43,38 @@ function addSkill(index, prof) {
 	if (table.childElementCount == 1) {
 		var tr = document.createElement("tr");
 		for (i = 0; i < index-1; i++) {
-			tr.appendChild(document.createElement("th"));
+			tr.appendChild(document.createElement("td"));
 		}
 		tr.appendChild(createSkill(prof, index, 1));
 		table.appendChild(tr);
 	} else {
-		for (trIndex in table.childNodes) {
-			tr = table.childNodes[trIndex];
-			if (tr.childElementCount < index || tr.childNodes[index].innerHTML == "") {
+		for (trIndex = 0; trIndex < table.children.length; trIndex++) {
+			tr = table.children[trIndex];
+			if (tr.childElementCount == undefined || tr.childElementCount < index || tr.children[index-1].innerHTML == "") {
 				for (i = tr.childElementCount; i <= index-1; i++) {
-					tr.appendChild(document.createElement("th"));
+					tr.appendChild(document.createElement("td"));
 				}
 				tr.appendChild(createSkill(prof, index, trIndex));
+				break;
 			}
 		}
+		var tr = document.createElement("tr");
+		for (i = 0; i < index-1; i++) {
+			tr.appendChild(document.createElement("td"));
+		}
+		tr.appendChild(createSkill(prof, index, 1));
+		table.appendChild(tr);
 	}
 }
 
 function createSkill(prof, xIndex, yIndex) {
-	var th = document.createElement("th");
+	var td = document.createElement("td");
 	var select = document.createElement("select");
 	select.setAttribute("name", "skill" + xIndex + "-" + yIndex);
 	select.setAttribute("id", "skill" + xIndex + "-" + yIndex);
+	select.setAttribute("xindex", xIndex);
+	select.setAttribute("yindex", yIndex);
+	select.setAttribute("prof", prof);
 	select.onchange = function() {
 		changedSkill(select);
 	};
@@ -81,8 +91,8 @@ function createSkill(prof, xIndex, yIndex) {
 		option.appendChild(text);
 		select.appendChild(option);
 	}
-	th.appendChild(select);
-	return th;
+	td.appendChild(select);
+	return td;
 }
 
 function getSkills(prof) {
@@ -94,7 +104,7 @@ function changedProfession(select) {
 	console.log(select.value);
 	if (select.value != "-") {
 		console.log("CHANGED PROF");
-		addSkill(select.index, select.value);
+		addSkill(select.attributes["index"].value, select.value);
 	} else {
 		console.log("REMOVED PROF");
 	}
@@ -102,4 +112,10 @@ function changedProfession(select) {
 
 function changedSkill(select) {
 	console.log(select.value);
+	if (select.value != "-") {
+		console.log("CHANGED SKILL");
+		addSkill(select.attributes["xindex"].value, select.attributes["prof"].value);
+	} else {
+		console.log("REMOVED SKILL");
+	}
 }

@@ -57,3 +57,11 @@ div {
 #modules-table tr td input {
 	width: 20px;
 }
+
+#skills-container tr td select {
+	width: 100px;
+}
+
+#skills-container tr th select {
+	width: 100px;
+}
