@@ -58,10 +58,14 @@ div {
 	width: 20px;
 }
 
+#skills-container tr th select {
+	width: 130px;
+}
+
 #skills-container tr td select {
 	width: 100px;
 }
 
-#skills-container tr th select {
-	width: 100px;
+#skills-container tr td input {
+	width: 20px;
 }

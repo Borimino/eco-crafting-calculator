@@ -92,6 +92,10 @@ function createSkill(prof, xIndex, yIndex) {
 		select.appendChild(option);
 	}
 	td.appendChild(select);
+	var input = document.createElement("input");
+	input.setAttribute("id", "skill" + xIndex + "-" + yIndex + "lvl");
+	input.setAttribute("type", "number");
+	td.appendChild(input);
 	return td;
 }
 
