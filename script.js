@@ -48,15 +48,27 @@ function addSkill(index, prof) {
 		tr.appendChild(createSkill(prof, index, 1));
 		table.appendChild(tr);
 	} else {
-		for (trIndex = 0; trIndex < table.children.length; trIndex++) {
+		var addNewSkill = true;
+		for (trIndex = 1; trIndex < table.children.length; trIndex++) {
 			tr = table.children[trIndex];
 			if (tr.childElementCount == undefined || tr.childElementCount < index || tr.children[index-1].innerHTML == "") {
-				for (i = tr.childElementCount; i <= index-1; i++) {
+				if (addNewSkill == false) {
+					return;
+				}
+				for (i = tr.childElementCount; i < index-1; i++) {
 					tr.appendChild(document.createElement("td"));
 				}
 				tr.appendChild(createSkill(prof, index, trIndex));
-				break;
+				return;
 			}
+			if (tr.children[index-1].firstChild.value == "-") {
+				addNewSkill = false;
+			} else {
+				addNewSkill = true;
+			}
+		}
+		if (addNewSkill == false) {
+			return;
 		}
 		var tr = document.createElement("tr");
 		for (i = 0; i < index-1; i++) {
@@ -99,6 +111,16 @@ function createSkill(prof, xIndex, yIndex) {
 	return td;
 }
 
+function removeSkills(index) {
+	var table = document.getElementById("skills-container");
+	for (i = 1; i < table.children.length; i++) {
+		var tr = table.children[i];
+		if (tr.children.length >= index) {
+			tr.removeChild(tr.children[index-1]);
+		}
+	}
+}
+
 function getSkills(prof) {
 	if (prof == "Carpenter") return ["Logging", "Carpentry"];
 	if (prof == "Miner") return ["Mining"];
@@ -108,7 +130,12 @@ function changedProfession(select) {
 	console.log(select.value);
 	if (select.value != "-") {
 		console.log("CHANGED PROF");
+		removeSkills(select.attributes["index"].value);
 		addSkill(select.attributes["index"].value, select.value);
+		tr = document.getElementById("skills-container").children[0];
+		if (tr.lastChild.firstChild.value != "-") {
+			tr.appendChild(createProfession(parseInt(select.attributes["index"].value) + 1));
+		}
 	} else {
 		console.log("REMOVED PROF");
 	}
