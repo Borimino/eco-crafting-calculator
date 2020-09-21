@@ -152,6 +152,26 @@ function maybeRemoveProfession(index) {
 	}
 }
 
+function maybeRemoveSkill(xIndex, yIndex) {
+	var table = document.getElementById("skills-container");
+	var tr = table.children[parseInt(yIndex)];
+	var currSkill = tr.children[parseInt(xIndex) - 1];
+	if (currSkill.firstChild.value != "-") {
+		return;
+	}
+	if (table.children.length > parseInt(yIndex) + 1 && table.children[parseInt(yIndex) + 1].children[parseInt(xIndex)-1].innerHTML != "") {
+		maybeRemoveSkill(xIndex, parseInt(yIndex) + 1);
+		return;
+	}
+	if (yIndex > 1) {
+		tr.removeChild(currSkill);
+		if (tr.children.length == 0) {
+			table.removeChild(tr);
+		}
+		maybeRemoveSkill(xIndex, parseInt(yIndex) - 1);
+	}
+}
+
 function changedProfession(select) {
 	console.log(select.value);
 	if (select.value != "-") {
@@ -176,5 +196,6 @@ function changedSkill(select) {
 		addSkill(select.attributes["xindex"].value, select.attributes["prof"].value);
 	} else {
 		console.log("REMOVED SKILL");
+		maybeRemoveSkill(select.attributes["xindex"].value, select.attributes["yindex"].value);
 	}
 }
