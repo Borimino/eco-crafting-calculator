@@ -115,8 +115,17 @@ function removeSkills(index) {
 	var table = document.getElementById("skills-container");
 	for (i = 1; i < table.children.length; i++) {
 		var tr = table.children[i];
-		if (tr.children.length >= index) {
+		if (tr.children.length == index) {
 			tr.removeChild(tr.children[index-1]);
+			for (j = tr.children.length-1; j >= 0; j--) {
+				if (tr.children[j].children.length == 0) {
+					tr.removeChild(tr.children[j]);
+				} else {
+					break;
+				}
+			}
+		} else if (tr.children.length > index) {
+			tr.children[index-1].innerHTML = "";
 		}
 	}
 }
@@ -124,6 +133,23 @@ function removeSkills(index) {
 function getSkills(prof) {
 	if (prof == "Carpenter") return ["Logging", "Carpentry"];
 	if (prof == "Miner") return ["Mining"];
+}
+
+function maybeRemoveProfession(index) {
+	var table = document.getElementById("skills-container");
+	var tr = table.children[0];
+	var currProf = tr.children[parseInt(index) - 1];
+	if (currProf.firstChild.value != "-") {
+		return;
+	}
+	if (tr.children.length > index) {
+		maybeRemoveProfession(parseInt(index) + 1);
+		return;
+	}
+	if (index > 1) {
+		tr.removeChild(currProf);
+		maybeRemoveProfession(parseInt(index) - 1);
+	}
 }
 
 function changedProfession(select) {
@@ -138,6 +164,8 @@ function changedProfession(select) {
 		}
 	} else {
 		console.log("REMOVED PROF");
+		removeSkills(select.attributes["index"].value);
+		maybeRemoveProfession(parseInt(select.attributes["index"].value) + 1);
 	}
 }
 

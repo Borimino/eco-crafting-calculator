@@ -22,36 +22,42 @@ div {
 	grid-column: 1;
 	grid-row: 1;
 	border: 2px solid white;
+	overflow: auto;
 }
 
 #modules {
 	grid-column: 2;
 	grid-row: 1;
 	border: 2px solid white;
+	overflow: auto;
 }
 
 #main {
 	grid-column: 1 / span 2;
 	grid-row: 2 / span 2;
 	border: 2px solid white;
+	overflow: auto;
 }
 
 #resource_sum {
 	grid-column: 3;
 	grid-row: 1;
 	border: 2px solid white;
+	overflow: auto;
 }
 
 #labor_sum {
 	grid-column: 3;
 	grid-row: 2;
 	border: 2px solid white;
+	overflow: auto;
 }
 
 #machine_sum {
 	grid-column: 3;
 	grid-row: 3;
 	border: 2px solid white;
+	overflow: auto;
 }
 
 #modules-table tr td input {
